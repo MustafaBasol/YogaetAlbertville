@@ -1,0 +1,84 @@
+# ------------------------------------------------------------------
+# Yoga et Vie Albertville — only our own code belongs in this repo.
+# WordPress core, uploads, databases and credentials must never be
+# committed.
+# ------------------------------------------------------------------
+
+# --- Secrets & credentials (never commit) ---------------------------
+.env
+.env.*
+!.env.example
+wp-config.php
+wp-config-local.php
+configuration.php
+*.pem
+*.key
+*.p12
+*.pfx
+*.kdbx
+id_rsa*
+*.ovh
+.ftpconfig
+sftp-config.json
+.vscode/sftp.json
+auth.json
+.htpasswd
+
+# --- Databases, dumps & backups (never commit) ----------------------
+*.sql
+*.sql.gz
+*.sqlite
+*.sqlite3
+*.db
+*.dump
+*.bak
+*.backup
+*.old
+*.orig
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.jpa
+*.wpress
+backup/
+backups/
+dumps/
+
+# --- Legacy Joomla material: must never enter this repository -------
+joomla/
+legacy/
+old-site/
+
+# --- WordPress core & runtime (not versioned) -----------------------
+/wordpress/*
+!/wordpress/wp-content/
+/wordpress/wp-content/*
+!/wordpress/wp-content/themes/
+!/wordpress/wp-content/plugins/
+/wordpress/wp-content/themes/*
+!/wordpress/wp-content/themes/yoga-et-vie/
+/wordpress/wp-content/plugins/*
+!/wordpress/wp-content/plugins/yoga-et-vie-core/
+uploads/
+upgrade/
+cache/
+
+# --- Local preview sandbox created by tools/local-preview.sh --------
+/.local-wp/
+
+# --- Dependencies & tooling output ---------------------------------
+node_modules/
+vendor/
+.phpcs-cache
+*.log
+npm-debug.log*
+tools/qa/screenshots/
+tools/qa/report/
+
+# --- OS / editor noise ----------------------------------------------
+.DS_Store
+Thumbs.db
+.idea/
+*.swp
+*~

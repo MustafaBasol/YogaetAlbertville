@@ -1,0 +1,54 @@
+name: Qualité
+
+on:
+  push:
+    branches: [ main, 'claude/**' ]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  php:
+    name: PHP (lint, WPCS, thème)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: composer:v2
+          coverage: none
+      - run: composer install --no-interaction --no-progress
+      - name: Syntaxe PHP
+        run: composer lint:php
+      - name: WordPress Coding Standards + compatibilité PHP 8.2
+        run: composer lint:phpcs
+      - name: Validation du thème (JSON, motifs, balisage des blocs)
+        run: composer validate:theme
+
+  css:
+    name: CSS (Stylelint)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm run lint:css
+
+  secrets:
+    name: Aucun fichier sensible
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Refuser dumps, sauvegardes, configurations et restes Joomla
+        run: |
+          found=$(git ls-files | grep -Ei '(\.sql(\.gz)?|\.sqlite3?|\.bak|\.wpress|\.jpa|wp-config\.php|configuration\.php|\.env)$' || true)
+          if [ -n "$found" ]; then echo "Fichiers interdits : $found"; exit 1; fi

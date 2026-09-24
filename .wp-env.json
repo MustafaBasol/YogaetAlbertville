@@ -1,0 +1,19 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/wp-env.json",
+  "core": null,
+  "phpVersion": "8.3",
+  "themes": [ "./wordpress/wp-content/themes/yoga-et-vie" ],
+  "plugins": [ "./wordpress/wp-content/plugins/yoga-et-vie-core" ],
+  "mappings": {
+    "yev-tools": "./tools"
+  },
+  "config": {
+    "WP_ENVIRONMENT_TYPE": "local",
+    "WP_DEBUG": true,
+    "WP_DEBUG_LOG": true,
+    "WP_DEBUG_DISPLAY": false
+  },
+  "lifecycleScripts": {
+    "afterStart": "npx --yes @wordpress/env@11 run cli wp rewrite structure '/%postname%/' --hard"
+  }
+}

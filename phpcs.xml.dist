@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<ruleset name="Yoga et Vie">
+	<description>WordPress Coding Standards for the Yoga et Vie theme and plugin.</description>
+
+	<file>wordpress/wp-content/themes/yoga-et-vie</file>
+	<file>wordpress/wp-content/plugins/yoga-et-vie-core</file>
+	<file>tools</file>
+
+	<exclude-pattern>*/vendor/*</exclude-pattern>
+	<exclude-pattern>*/node_modules/*</exclude-pattern>
+
+	<arg name="extensions" value="php"/>
+	<arg name="colors"/>
+	<arg name="parallel" value="8"/>
+	<arg name="cache" value=".phpcs-cache"/>
+	<arg value="sp"/>
+
+	<config name="testVersion" value="8.2-"/>
+	<config name="minimum_wp_version" value="6.7"/>
+
+	<rule ref="PHPCompatibilityWP"/>
+
+	<rule ref="WordPress">
+		<!-- Pattern files are mostly block markup with a PHP header. -->
+		<exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
+		<!-- Visible strings are French by design (single-language client site). -->
+		<exclude name="WordPress.WP.I18n.MissingTranslatorsComment"/>
+		<!-- Short array syntax and short ternaries are fine on PHP 8.2+. -->
+		<exclude name="Universal.Arrays.DisallowShortArraySyntax"/>
+	</rule>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="yoga-et-vie"/>
+				<element value="yoga-et-vie-core"/>
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="yev_"/>
+				<element value="YEV_"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!-- tools/ holds one-shot WP-CLI scripts (wp eval-file): their top-level
+	     variables are not theme/plugin globals. -->
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound">
+		<exclude-pattern>*/tools/*</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.WP.GlobalVariablesOverride.Prohibited">
+		<exclude-pattern>*/tools/*</exclude-pattern>
+	</rule>
+	<!-- Standalone CLI validator that runs without WordPress (CI). -->
+	<rule ref="WordPress.WP.AlternativeFunctions">
+		<exclude-pattern>*/tools/validate-theme.php</exclude-pattern>
+	</rule>
+</ruleset>

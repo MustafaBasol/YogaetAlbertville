@@ -1,0 +1,25 @@
+{
+	"name": "yoga-et-vie-albertville",
+	"version": "0.1.0",
+	"private": true,
+	"description": "Site WordPress de l'association Yoga et Vie (Albertville) — outillage de développement.",
+	"license": "GPL-2.0-or-later",
+	"engines": {
+		"node": ">=20"
+	},
+	"scripts": {
+		"lint:css": "stylelint \"wordpress/wp-content/**/*.css\"",
+		"fix:css": "stylelint \"wordpress/wp-content/**/*.css\" --fix",
+		"env:start": "npx --yes @wordpress/env@11 start",
+		"env:stop": "npx --yes @wordpress/env@11 stop",
+		"env:seed": "npx --yes @wordpress/env@11 run cli wp eval-file yev-tools/seed-demo-content.php",
+		"env:clean": "npx --yes @wordpress/env@11 clean all",
+		"preview": "./tools/local-preview.sh",
+		"qa:site": "node tools/qa/check-site.mjs",
+		"qa:blocks": "node tools/qa/validate-blocks.mjs"
+	},
+	"devDependencies": {
+		"stylelint": "^16.10.0",
+		"stylelint-config-standard": "^36.0.1"
+	}
+}
