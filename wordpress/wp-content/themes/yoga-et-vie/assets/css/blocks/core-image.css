@@ -1,0 +1,16 @@
+/* Core Image — styles "Arche" / "Arrondie" clip the picture itself. */
+
+.wp-block-image.is-style-arch img,
+.wp-block-image.is-style-rounded-soft img {
+	display: block;
+	width: 100%;
+	object-fit: cover;
+}
+
+.wp-block-image.is-style-arch img {
+	border-radius: 999px 999px var(--wp--custom--radius--medium) var(--wp--custom--radius--medium);
+}
+
+.wp-block-image.is-style-rounded-soft img {
+	border-radius: var(--wp--custom--radius--large);
+}

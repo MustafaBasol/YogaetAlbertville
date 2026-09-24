@@ -1,0 +1,10 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.7/theme.json",
+	"version": 3,
+	"title": "Arche",
+	"slug": "arch",
+	"blockTypes": [ "core/image", "core/post-featured-image" ],
+	"styles": {
+		"border": { "radius": "999px 999px var(--wp--custom--radius--medium) var(--wp--custom--radius--medium)" }
+	}
+}

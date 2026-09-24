@@ -1,0 +1,63 @@
+<!-- wp:template-part {"slug":"header","tagName":"header","area":"header"} /-->
+
+<!-- wp:group {"tagName":"main","style":{"spacing":{"margin":{"top":"0"},"padding":{"top":"0","bottom":"var:preset|spacing|70"}}},"layout":{"type":"constrained"}} -->
+<main class="wp-block-group" style="margin-top:0;padding-top:0;padding-bottom:var(--wp--preset--spacing--70)"><!-- wp:group {"tagName":"article","align":"full","style":{"spacing":{"blockGap":"0","padding":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained"}} -->
+<article class="wp-block-group alignfull" style="padding-top:0;padding-bottom:0"><!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|50"},"blockGap":"var:preset|spacing|20"}},"backgroundColor":"sand","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull has-sand-background-color has-background" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--50)"><!-- wp:paragraph {"fontSize":"small"} -->
+<p class="has-small-font-size"><a href="/evenements/">← Tous les événements et actualités</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:post-terms {"term":"category","className":"yev-terms"} /-->
+
+<!-- wp:post-title {"level":1} /-->
+
+<!-- wp:post-date /--></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"is-style-card yev-requires-event","style":{"spacing":{"margin":{"top":"var:preset|spacing|50"},"blockGap":"0"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group is-style-card yev-requires-event" style="margin-top:var(--wp--preset--spacing--50)"><!-- wp:heading {"level":2,"fontSize":"large"} -->
+<h2 class="wp-block-heading has-large-font-size">L’événement en bref</h2>
+<!-- /wp:heading -->
+
+<!-- wp:group {"className":"yev-detail","layout":{"type":"default"}} -->
+<div class="wp-block-group yev-detail"><!-- wp:paragraph {"className":"yev-detail__label"} -->
+<p class="yev-detail__label">Quand</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"yoga-et-vie/field","args":{"key":"event_when"}}}}} -->
+<p></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"yev-detail","layout":{"type":"default"}} -->
+<div class="wp-block-group yev-detail"><!-- wp:paragraph {"className":"yev-detail__label"} -->
+<p class="yev-detail__label">Où</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"yoga-et-vie/field","args":{"key":"event_place"}}}}} -->
+<p></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:buttons {"className":"yev-requires-event_cta_url","style":{"spacing":{"margin":{"top":"var:preset|spacing|30"}}}} -->
+<div class="wp-block-buttons yev-requires-event_cta_url" style="margin-top:var(--wp--preset--spacing--30)"><!-- wp:button {"metadata":{"bindings":{"text":{"source":"yoga-et-vie/field","args":{"key":"event_cta_label"}},"url":{"source":"yoga-et-vie/field","args":{"key":"event_cta_url"}}}}} -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button"></a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons --></div>
+<!-- /wp:group -->
+
+<!-- wp:post-featured-image {"aspectRatio":"16/9","className":"is-style-rounded-soft","style":{"spacing":{"margin":{"top":"var:preset|spacing|50"}}}} /-->
+
+<!-- wp:post-content {"style":{"spacing":{"margin":{"top":"var:preset|spacing|50"}}},"layout":{"type":"constrained"}} /--></article>
+<!-- /wp:group -->
+
+<!-- wp:separator {"className":"is-style-mountains","style":{"spacing":{"margin":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|40"}}}} -->
+<hr class="wp-block-separator has-alpha-channel-opacity is-style-mountains" style="margin-top:var(--wp--preset--spacing--60);margin-bottom:var(--wp--preset--spacing--40)"/>
+<!-- /wp:separator -->
+
+<!-- wp:post-navigation-link {"type":"previous","label":"Article précédent","showTitle":true,"arrow":"arrow"} /-->
+
+<!-- wp:post-navigation-link {"label":"Article suivant","showTitle":true,"arrow":"arrow"} /--></main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer","area":"footer"} /-->

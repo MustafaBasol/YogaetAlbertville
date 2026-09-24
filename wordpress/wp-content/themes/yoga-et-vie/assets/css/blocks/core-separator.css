@@ -1,0 +1,24 @@
+/* Core Separator — "Montagnes" style: a small ridge line ornament. */
+
+.wp-block-separator.is-style-mountains {
+	width: 240px;
+	max-width: 60%;
+	height: 40px;
+	margin-inline: auto;
+	border: 0;
+	background: url("../../images/ridge-line.svg") center / contain no-repeat;
+	opacity: 1;
+}
+
+.wp-block-separator.is-style-mountains.alignleft,
+.wp-block-separator.is-style-mountains.has-text-align-left {
+	margin-left: 0;
+}
+
+/* Smaller ornament when used inside a stacked (flex) group, e.g. benefits. */
+.is-layout-flex > .wp-block-separator.is-style-mountains {
+	width: 6rem;
+	height: 1.5rem;
+	margin-left: 0;
+	background-position: left center;
+}

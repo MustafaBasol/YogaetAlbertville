@@ -1,0 +1,33 @@
+/* Core Button — comfortable tap targets, accessible outline variant. */
+
+.wp-block-button__link {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5em;
+	min-height: 44px;
+	box-sizing: border-box;
+}
+
+.wp-block-button.is-style-outline > .wp-block-button__link:hover,
+.wp-block-button.is-style-outline > .wp-block-button__link:focus-visible {
+	background-color: var(--wp--preset--color--sage-dark);
+	border-color: var(--wp--preset--color--sage-dark);
+	color: var(--wp--preset--color--cream);
+}
+
+/* Buttons on dark sections */
+:where(.has-forest-background-color, .has-sage-dark-background-color) .wp-block-button:not(.is-style-outline) > .wp-block-button__link {
+	background-color: var(--wp--preset--color--cream);
+	color: var(--wp--preset--color--forest);
+}
+
+:where(.has-forest-background-color, .has-sage-dark-background-color) .wp-block-button.is-style-outline > .wp-block-button__link {
+	color: var(--wp--preset--color--cream);
+}
+
+:where(.has-forest-background-color, .has-sage-dark-background-color) .wp-block-button > .wp-block-button__link:hover {
+	background-color: var(--wp--preset--color--sand);
+	border-color: var(--wp--preset--color--sand);
+	color: var(--wp--preset--color--forest);
+}

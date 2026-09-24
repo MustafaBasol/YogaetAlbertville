@@ -1,0 +1,14 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.7/theme.json",
+	"version": 3,
+	"title": "Chapô (introduction)",
+	"slug": "lead",
+	"blockTypes": [ "core/paragraph" ],
+	"styles": {
+		"color": { "text": "var:preset|color|taupe" },
+		"typography": {
+			"fontSize": "var:preset|font-size|large",
+			"lineHeight": "1.55"
+		}
+	}
+}

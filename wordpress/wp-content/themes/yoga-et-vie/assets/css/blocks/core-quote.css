@@ -1,0 +1,12 @@
+/* Core Quote — "Citation" pattern with a large centred variant. */
+
+.wp-block-quote.yev-quote-centered {
+	border-left: 0;
+	padding-left: 0;
+	text-align: center;
+}
+
+.wp-block-quote.yev-quote-centered p {
+	font-size: var(--wp--preset--font-size--x-large);
+	line-height: 1.4;
+}

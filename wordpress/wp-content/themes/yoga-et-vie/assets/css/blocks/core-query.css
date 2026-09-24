@@ -1,0 +1,91 @@
+/* Core Query — course planning list and card grids. */
+
+/* Planning: one row per class, stacked on phones. */
+.wp-block-query.is-style-schedule .wp-block-post-template {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	border-top: 1px solid var(--wp--preset--color--beige);
+}
+
+.wp-block-query.is-style-schedule .wp-block-post-template > li {
+	margin: 0;
+	border-bottom: 1px solid var(--wp--preset--color--beige);
+}
+
+.yev-schedule-row {
+	display: grid;
+	gap: 0.25rem 1.5rem;
+	padding-block: 1.1rem;
+}
+
+.yev-schedule-row > * {
+	margin: 0 !important;
+}
+
+.yev-schedule-row__when {
+	color: var(--wp--preset--color--clay-dark);
+	font-weight: 700;
+}
+
+.yev-schedule-row .wp-block-post-title {
+	font-size: var(--wp--preset--font-size--large);
+}
+
+.yev-schedule-row__meta {
+	color: var(--wp--preset--color--taupe);
+	font-size: var(--wp--preset--font-size--small);
+}
+
+@media (min-width: 48em) {
+	.yev-schedule-row {
+		grid-template-columns: minmax(11rem, 1.1fr) 2fr 1.4fr;
+		align-items: baseline;
+	}
+}
+
+/* Cards in a query grid */
+.wp-block-post-template.is-layout-grid > li {
+	display: flex;
+}
+
+.wp-block-post-template.is-layout-grid > li > .is-style-card {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.wp-block-post-template .wp-block-post-title a::after {
+	/* Whole card clickable through the title link, keeping one link per card. */
+	content: "";
+	position: absolute;
+	inset: 0;
+}
+
+.wp-block-post-template .is-style-card {
+	position: relative;
+	transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.wp-block-post-template .is-style-card:hover {
+	box-shadow: 0 2px 4px rgb(44 43 39 / 6%), 0 16px 32px -12px rgb(44 43 39 / 22%);
+}
+
+.wp-block-post-template .is-style-card:focus-within {
+	outline: var(--wp--custom--focus--width) solid var(--wp--custom--focus--color);
+	outline-offset: 2px;
+}
+
+.wp-block-post-template .is-style-card a:focus-visible {
+	outline: none;
+}
+
+.wp-block-post-template .is-style-card .wp-block-post-featured-image {
+	margin: calc(-1 * var(--wp--preset--spacing--40)) calc(-1 * var(--wp--preset--spacing--40)) 0;
+	overflow: hidden;
+	border-radius: var(--wp--custom--radius--medium) var(--wp--custom--radius--medium) 0 0;
+}
+
+.wp-block-query-pagination {
+	margin-top: var(--wp--preset--spacing--50);
+}

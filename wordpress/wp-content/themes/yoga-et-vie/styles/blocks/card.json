@@ -1,0 +1,25 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.7/theme.json",
+	"version": 3,
+	"title": "Carte",
+	"slug": "card",
+	"blockTypes": [ "core/group", "core/column" ],
+	"styles": {
+		"color": { "background": "var:preset|color|white" },
+		"border": {
+			"radius": "var(--wp--custom--radius--medium)",
+			"color": "rgba(44, 43, 39, 0.08)",
+			"style": "solid",
+			"width": "1px"
+		},
+		"shadow": "var:preset|shadow|soft",
+		"spacing": {
+			"padding": {
+				"top": "var:preset|spacing|40",
+				"bottom": "var:preset|spacing|40",
+				"left": "var:preset|spacing|40",
+				"right": "var:preset|spacing|40"
+			}
+		}
+	}
+}
