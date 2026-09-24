@@ -146,3 +146,34 @@ if (leftovers.length) {
 	console.error('Références restantes à nettoyer :\n' + leftovers.join('\n'));
 	process.exit(1);
 }
+
+// Sanity check: every local (non-http, non-anchor, non-mailto) reference in
+// every HTML/CSS file must resolve to a file that actually exists on disk.
+// This is what would have caught, at export time, an asset that wget failed
+// to fetch — it does NOT by itself catch a file that exists on disk but
+// later gets silently dropped by .gitignore before the export is committed;
+// see the separate `git check-ignore` sweep in export-static-preview.sh for
+// that failure mode (that's the one that broke the logo on Vercel).
+const REF = /(?:href|src)=["']([^"'#][^"']*)["']|srcset=["']([^"']+)["']|url\(\s*["']?([^"')]+)["']?\s*\)/g;
+const missing = [];
+for (const file of files) {
+	if (!/\.(html|css)$/.test(file)) continue;
+	const content = fs.readFileSync(file, 'utf8');
+	let m;
+	while ((m = REF.exec(content))) {
+		const raw = m[1] ?? m[3];
+		const srcset = m[2];
+		const candidates = srcset ? srcset.split(',').map((part) => part.trim().split(/\s+/)[0]) : raw ? [raw] : [];
+		for (const candidate of candidates) {
+			if (!candidate || /^(https?:)?\/\//.test(candidate) || /^(mailto|tel|data|#):/.test(candidate)) continue;
+			const clean = candidate.split('#')[0].split('?')[0];
+			const resolved = clean.startsWith('/') ? path.join(distDir, clean) : path.join(path.dirname(file), clean);
+			if (!fs.existsSync(resolved)) missing.push(`${path.relative(distDir, file)} → ${candidate}`);
+		}
+	}
+}
+if (missing.length) {
+	console.error(`${missing.length} référence(s) locale(s) pointent vers un fichier absent :\n` + [...new Set(missing)].join('\n'));
+	process.exit(1);
+}
+console.log(`Vérification des références locales : ${files.filter((f) => /\.(html|css)$/.test(f)).length} fichier(s) contrôlé(s), aucune référence cassée.`);

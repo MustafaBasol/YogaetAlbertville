@@ -60,9 +60,15 @@ old-site/
 !/wordpress/wp-content/themes/yoga-et-vie/
 /wordpress/wp-content/plugins/*
 !/wordpress/wp-content/plugins/yoga-et-vie-core/
-uploads/
-upgrade/
-cache/
+# Anchored to the real WordPress root only — an unanchored "uploads/" (no
+# leading slash) would also match, and silently exclude, unrelated
+# directories such as preview-dist/wp-content/uploads/ (the static export's
+# own images, logo and favicon, which MUST be committed for Vercel to serve
+# them). /wordpress/wp-content/* above already covers this too; kept here
+# only for explicitness.
+/wordpress/wp-content/uploads/
+/wordpress/wp-content/upgrade/
+/wordpress/wp-content/cache/
 
 # --- Local preview sandbox created by tools/local-preview.sh --------
 /.local-wp/

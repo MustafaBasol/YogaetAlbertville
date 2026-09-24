@@ -128,6 +128,25 @@ cat > "$OUT/vercel.json" <<'EOF'
 }
 EOF
 
+# --- 7. Guard against the export being silently uncommittable -------------
+# A file that exists in preview-dist/ but is matched by .gitignore (e.g. an
+# unanchored rule like "uploads/" written for wordpress/wp-content/uploads/
+# but that also matches preview-dist/wp-content/uploads/) never reaches the
+# repository, so Vercel — which deploys from git, not from this disk — never
+# receives it. This is exactly what broke the logo and favicon once before.
+# Fail loudly here instead of discovering it after a deploy.
+if git -C "$ROOT" rev-parse --git-dir >/dev/null 2>&1; then
+	ignored="$(find "$OUT" -type f -print0 | xargs -0 git -C "$ROOT" check-ignore -v 2>/dev/null || true)"
+	if [ -n "$ignored" ]; then
+		echo "✘ Des fichiers de preview-dist/ sont exclus par .gitignore et ne seront donc jamais déployés :" >&2
+		echo "$ignored" >&2
+		echo "  Corrigez la règle .gitignore concernée avant de committer." >&2
+		if [ "$STARTED_SERVER" = "1" ]; then pkill -f "php -S localhost:$PORT" 2>/dev/null || true; fi
+		exit 1
+	fi
+	echo "→ Aucun fichier de preview-dist/ n'est exclu par .gitignore."
+fi
+
 if [ "$STARTED_SERVER" = "1" ]; then
 	pkill -f "php -S localhost:$PORT" 2>/dev/null || true
 fi
