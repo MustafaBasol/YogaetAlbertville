@@ -15,9 +15,10 @@ Remplacement du site actuel <https://www.yogaetviealbertville.fr/> (Joomla 2.5, 
 5. [Structure du thème](#structure-du-thème)
 6. [Expérience d'édition (administrateurs de l'association)](#expérience-dédition)
 7. [Contenu de démonstration](#contenu-de-démonstration)
-8. [Ce qu'il reste à obtenir du client](#ce-quil-reste-à-obtenir-du-client)
-9. [Mise en production chez OVH (plus tard)](#mise-en-production-chez-ovh-plus-tard)
-10. [Sécurité](#sécurité)
+8. [Aperçu client statique (Vercel)](#aperçu-client-statique-vercel)
+9. [Ce qu'il reste à obtenir du client](#ce-quil-reste-à-obtenir-du-client)
+10. [Mise en production chez OVH (plus tard)](#mise-en-production-chez-ovh-plus-tard)
+11. [Sécurité](#sécurité)
 
 ---
 
@@ -44,8 +45,10 @@ Le dépôt ne contient **que notre code** (thème, extension, outillage, documen
 │   ├── remove-demo-content.php   Suppression du contenu de démonstration (WP-CLI)
 │   ├── validate-theme.php        Validation statique du thème (CI)
 │   ├── router.php                Routeur du serveur PHP intégré (aperçu local)
+│   ├── export-static-preview.sh  Export HTML statique jetable pour aperçu client (voir docs/client-preview.md)
 │   ├── demo-content/images/      Illustrations générées pour la démo (libres de droits)
-│   └── qa/                       Captures multi-écrans, axe-core, validation des blocs dans l'éditeur
+│   └── qa/                       Captures multi-écrans, axe-core, validation des blocs dans l'éditeur, post-traitement de l'export statique
+├── preview-dist/                 Export statique généré (jetable, régénérable — voir docs/client-preview.md)
 ├── wordpress/wp-content/
 │   ├── themes/yoga-et-vie/       Le thème
 │   └── plugins/yoga-et-vie-core/ L'extension « Yoga et Vie — fonctionnalités »
@@ -142,7 +145,7 @@ themes/yoga-et-vie/
 └── assets/
     ├── css/global.css, css/blocks/core-*.css
     ├── fonts/            woff2 + licences OFL
-    └── images/           Illustrations SVG originales (provisoires) + logo provisoire
+    └── images/           Illustrations SVG originales (provisoires) + branding/ (logo officiel, source intacte)
 ```
 
 ## Expérience d'édition
@@ -164,11 +167,36 @@ Tout ce qui est visible est **temporaire** :
 - textes de pages rédigés en français crédible mais **non validés** ;
 - 5 cours d'exemple (jours, horaires, lieux, enseignant·e·s **laissés vides → « à confirmer »**) ;
 - 4 articles d'exemple (dates « à confirmer ») ;
-- illustrations SVG originales et logo provisoire (pictogramme montagnes + soleil) ;
+- illustrations SVG originales (à remplacer par de vraies photos) — **le logo est le logo officiel de l'association**, fourni par le client et intégré sans retouche ;
 - coordonnées, tarifs, adresses, mentions légales : **emplacements « à confirmer / [à compléter] »** — aucune donnée factuelle inventée ;
 - bandeau « Site en préparation » en haut du site (désactivable dans *Réglages › Yoga et Vie*).
 
 Dans le code, les patterns concernés portent la mention `CONTENU DE DÉMONSTRATION` dans leur en-tête ; les contenus créés par le script portent la méta `_yev_demo` et se suppriment avec `tools/remove-demo-content.php`.
+
+## Aperçu client statique (Vercel)
+
+Pour faire relire la maquette au client sans lui donner accès à WordPress, on peut exporter le site
+de démonstration en un **instantané HTML statique jetable** et le déposer sur Vercel.
+
+> ⚠️ **Ce n'est pas l'architecture du site.** Le WordPress ci-dessus reste la seule source de
+> vérité. Voir **[docs/client-preview.md](docs/client-preview.md)** pour le détail complet
+> (contenu exact, limitations, confidentialité, régénération).
+
+```bash
+npm run preview:export   # génère preview-dist/ (≈ 2,5 Mo, ~20 pages)
+cd preview-dist && python3 -m http.server 4000  # vérifier avant de déployer
+```
+
+Déploiement Vercel (aucune étape de build : Vercel ne peut pas exécuter notre WordPress local) :
+
+- **Root Directory** : `.` (racine du dépôt)
+- **Framework Preset** : `Other`
+- **Build Command** : *(aucune / laisser vide — "Override" désactivé)*
+- **Output Directory** : `preview-dist`
+
+Le lien généré (`https://….vercel.app`) est en `noindex` (balise + `robots.txt` + en-tête
+`X-Robots-Tag`) : à ne partager qu'avec le client, pas à publier. Le formulaire de contact y est
+visible mais **volontairement désactivé** (aucun envoi réel, aucun faux message de succès).
 
 ## Ce qu'il reste à obtenir du client
 

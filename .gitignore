@@ -67,6 +67,12 @@ cache/
 # --- Local preview sandbox created by tools/local-preview.sh --------
 /.local-wp/
 
+# --- Intermediate wget mirror created by tools/export-static-preview.sh
+# (disposable; the finished, post-processed export is /preview-dist/,
+# which IS committed — see docs/client-preview.md) -------------------
+/.preview-raw/
+/.preview-raw.log
+
 # --- Dependencies & tooling output ---------------------------------
 node_modules/
 vendor/

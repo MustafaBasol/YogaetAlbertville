@@ -10,7 +10,7 @@ Merci de ne **pas** nous envoyer de mots de passe par e-mail : nous organiserons
 
 ## 1. Identité
 
-- [ ] ★ **Logo** : de préférence en fichier vectoriel (SVG, PDF, AI, EPS) ou en PNG haute définition sur fond transparent. Souhaitez-vous garder le logo actuel, le moderniser, ou en créer un nouveau ?
+- [x] **Logo** : intégré (sceau rond fourni par vos soins). Si vous avez une version vectorielle (SVG, PDF, AI, EPS) ou une résolution supérieure, elle est bienvenue mais pas indispensable. Confirmez-vous qu'il s'agit bien de la seule identité visuelle à afficher (pas de logo « Yoga et Vie » séparé) ?
 - [ ] Couleurs ou éléments graphiques auxquels vous tenez particulièrement.
 - [ ] ★ **Nom exact** à afficher : « Yoga et Vie », « Yoga et Vie Albertville » ?
 - [ ] Une phrase de présentation courte (slogan), par exemple « Le yoga, simplement ».

@@ -4,7 +4,7 @@ Hypothèses prises pour avancer sans bloquer la conception. Chacune est facile �
 
 | Sujet | Hypothèse retenue | Impact si elle change |
 | --- | --- | --- |
-| Logo | Logo **provisoire** (pictogramme montagnes + soleil) ; le logo actuel n'a pas pu être récupéré (site inaccessible depuis l'environnement de développement). | Remplacer le logo dans *Apparence › Éditeur* (bloc Logo du site) ou via le script ; aucune modification de code. |
+| Logo | **Logo officiel intégré** (rond « Fédération Française de Hatha Yoga », confirmé par le client comme étant la marque de l'association). Fichier source conservé sans retouche dans `assets/images/branding/`. | Si le client fournit une version supérieure (vectorielle ou plus grande résolution), remplacer le fichier source et régénérer les dérivés — aucune autre modification de code. |
 | Langue | Site **uniquement en français**. | Multilingue = extension dédiée (Polylang…) et traduction des contenus. |
 | Inscription / paiement | Pas d'inscription ni de paiement en ligne : contact + infos pratiques. | Ajout d'un service (HelloAsso, formulaire…) : nouvelle section et mise à jour RGPD. |
 | Cours | Un cours = un créneau hebdomadaire ; 5 cours d'exemple, jours/horaires/lieux « à confirmer ». | Aucun : il suffit de remplir les fiches. |
@@ -17,9 +17,10 @@ Hypothèses prises pour avancer sans bloquer la conception. Chacune est facile �
 
 ## Questions à poser à l'association
 
-1. Faut-il conserver le logo actuel, le moderniser ou en créer un nouveau ?
-2. Une inscription et/ou un paiement en ligne sont-ils souhaités (maintenant ou plus tard) ?
-3. Les événements (stages, ateliers) nécessitent-ils une inscription préalable ? Par quel moyen ?
-4. Quelle adresse e-mail doit recevoir les messages du formulaire ?
-5. Souhaitent-ils présenter les enseignant·e·s avec photo et biographie ?
-6. Quelles pages ou documents de l'ancien site sont encore utilisés (liens partagés, PDF) ?
+1. Une inscription et/ou un paiement en ligne sont-ils souhaités (maintenant ou plus tard) ?
+2. Les événements (stages, ateliers) nécessitent-ils une inscription préalable ? Par quel moyen ?
+3. Quelle adresse e-mail doit recevoir les messages du formulaire ?
+4. Souhaitent-ils présenter les enseignant·e·s avec photo et biographie ?
+5. Quelles pages ou documents de l'ancien site sont encore utilisés (liens partagés, PDF) ?
+6. Le logo intégré est le sceau rond de la Fédération Française de Hatha Yoga. Est-ce bien la seule
+   identité visuelle de l'association (pas de logo « Yoga et Vie » séparé à afficher à côté ou à la place) ?

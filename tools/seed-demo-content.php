@@ -361,11 +361,11 @@ if ( $uncategorized && (int) $uncategorized->term_id !== $cat_news ) {
 }
 
 // ---------------------------------------------------------------------------
-// 5. Provisional logo & site icon, demo banner, rewrite rules.
+// 5. Official logo & site icon, demo banner, rewrite rules.
 // ---------------------------------------------------------------------------
 
-set_theme_mod( 'custom_logo', yev_seed_image( 'logo-provisoire.png', 'Yoga et Vie' ) );
-update_option( 'site_icon', yev_seed_image( 'icone-provisoire.png', '' ) );
+set_theme_mod( 'custom_logo', yev_seed_image( 'yoga-et-vie-logo.png', 'Yoga et Vie' ) );
+update_option( 'site_icon', yev_seed_image( 'yoga-et-vie-icon.png', '' ) );
 
 $settings                = (array) get_option( 'yev_settings', array() );
 $settings['demo_notice'] = true;
